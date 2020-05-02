@@ -8,8 +8,16 @@ module Enumerable
       yield array[i]
     end
   end
+
+  def my_each_with_index(array)
+    i = -1
+    array.length.times do
+      i += 1
+      yield array[i], i
+    end
+  end
 end
 
-arr.my_each(arr) { |x| puts x * 10 }
+arr.my_each_with_index(arr) { |x, ind| puts "#{x}, #{ind}" }
 
-arr.each { |y| puts y }
+arr.each_with_index { |y, idx| puts "#{y}, #{idx}" }
