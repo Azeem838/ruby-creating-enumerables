@@ -1,4 +1,5 @@
 arr = [5, 2, 3, 8, 10, 14, 16]
+word_list = %w[ant bear cat]
 
 module Enumerable
   def my_each()
@@ -36,6 +37,18 @@ module Enumerable
     end
     count == new_array.length
   end
+
+  def my_any?(&block)
+    new_array = []
+    my_each do |item|
+      new_array << (block.call(item) == true ? 1 : 0)
+    end
+    count = 0
+    new_array.my_each do |x|
+      count += x
+    end
+    count != 0
+  end
 end
 # arr.my_each { |x| puts x }
 # arr.my_each_with_index { |idx, x| puts "#{idx}, #{x}" }
@@ -43,5 +56,9 @@ end
 # p arr.my_select(&:even?)
 # p arr.select(&:even?)
 
-puts(arr.my_all? { |x| x > 1 })
-puts(arr.all? { |x| x > 1 })
+# puts(arr.my_all? { |x| x > 1 })
+# p(word_list.my_all? { |x| x.length >= 4 })
+# # puts(arr.all? { |x| x > 1 })
+
+p(word_list.my_any? { |x| x.length >= 4 })
+p(arr.any? { |x| x > 10 })
