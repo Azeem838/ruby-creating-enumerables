@@ -49,6 +49,18 @@ module Enumerable
     end
     count != 0
   end
+
+  def my_none?(&block)
+    new_array = []
+    my_each do |item|
+      new_array << (block.call(item) == true ? 1 : 0)
+    end
+    count = 0
+    new_array.my_each do |x|
+      count += x
+    end
+    count.zero?
+  end
 end
 # arr.my_each { |x| puts x }
 # arr.my_each_with_index { |idx, x| puts "#{idx}, #{x}" }
@@ -60,5 +72,8 @@ end
 # p(word_list.my_all? { |x| x.length >= 4 })
 # # puts(arr.all? { |x| x > 1 })
 
-p(word_list.my_any? { |x| x.length >= 4 })
-p(arr.any? { |x| x > 10 })
+# p(word_list.my_any? { |x| x.length >= 4 })
+# p(arr.any? { |x| x > 10 })
+
+p(word_list.my_none? { |x| x.length >= 5 })
+p(arr.my_none? { |x| x > 10 })
