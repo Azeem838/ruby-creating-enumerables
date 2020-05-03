@@ -73,6 +73,14 @@ module Enumerable
     end
     result != 0 ? result : my_each { |x| x }
   end
+
+  def my_map(&block)
+    new_array = []
+    my_each do |item|
+      new_array << block.call(item)
+    end
+    new_array
+  end
 end
 
 # arr.my_each { |x| puts x }
@@ -94,5 +102,8 @@ end
 # p(word_list.my_count { |x| x })
 # p(word_list.count { |x| x })
 
-p word_list.my_count
-p arr.count(&:even?)
+# p word_list.my_count
+# p arr.count(&:even?)
+
+p(arr.my_map { |x| x * 2 })
+p(arr.map { |x| x * 2 })
