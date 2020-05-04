@@ -81,6 +81,15 @@ module Enumerable
     end
     new_array
   end
+
+  def my_inject
+    value = (yield(self).is_a? Integer) == true ? 0 : ''
+    my_each do |item|
+      value = yield(value, item)
+      # p value
+    end
+    value
+  end
 end
 
 # arr.my_each { |x| puts x }
@@ -105,5 +114,19 @@ end
 # p word_list.my_count
 # p arr.count(&:even?)
 
-p(arr.my_map { |x| x * 2 })
-p(arr.map { |x| x * 2 })
+# p(arr.my_map { |x| x * 2 })
+# p(arr.map { |x| x * 2 })
+
+sum1 = arr.my_inject { |sum, n| sum + n }
+p sum1
+sum2 = arr.inject { |sum, n| sum + n }
+p sum2
+
+longest = word_list.my_inject do |memo, word|
+  memo.length > word.length ? memo : word
+end
+p longest
+longest1 = word_list.inject do |memo, word|
+  memo.length > word.length ? memo : word
+end
+p longest1
