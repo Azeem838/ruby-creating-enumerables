@@ -1,6 +1,3 @@
-arr = [5, 2, 3, 8, 10, 14, 16, 5, 5]
-word_list = %w[ant bear cat]
-
 module Enumerable
   def my_each()
     i = -1
@@ -98,46 +95,3 @@ def multiply_els(array)
   total = array.my_inject { |product, x| product * x }
   p total
 end
-
-# arr.my_each { |x| puts x }
-# arr.my_each_with_index { |idx, x| puts "#{idx}, #{x}" }
-
-# p arr.my_select(&:even?)
-# p arr.select(&:even?)
-
-# puts(arr.my_all? { |x| x > 1 })
-# p(word_list.my_all? { |x| x.length >= 4 })
-# # puts(arr.all? { |x| x > 1 })
-
-# p(word_list.my_any? { |x| x.length >= 4 })
-# p(arr.any? { |x| x > 10 })
-
-# p(word_list.my_none? { |x| x.length >= 5 })
-# p(arr.my_none? { |x| x > 10 })
-
-# p(word_list.my_count { |x| x })
-# p(word_list.count { |x| x })
-
-# p word_list.my_count
-# p arr.count(&:even?)
-
-# p(arr.my_map { |x| x * 2 })
-# p(arr.map { |x| x * 2 })
-
-# arr2 = [2, 4, 5]
-
-# p(arr2.my_inject { |sum, n| sum * n })
-
-# sum2 = arr.inject { |sum, n| sum + n }
-# p sum2
-
-# longest = word_list.my_inject do |memo, word|
-#   memo.length > word.length ? memo : word
-# end
-# p longest
-# longest1 = word_list.inject do |memo, word|
-#   memo.length > word.length ? memo : word
-# end
-# p longest1
-
-multiply_els([2, 4, 5])
