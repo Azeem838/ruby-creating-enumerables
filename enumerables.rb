@@ -82,14 +82,21 @@ module Enumerable
     new_array
   end
 
-  def my_inject
-    value = (yield(self).is_a? Integer) == true ? 0 : ''
+  def my_inject(memo = nil)
     my_each do |item|
-      value = yield(value, item)
-      # p value
+      memo = if memo.nil?
+               item
+             else
+               yield(memo, item)
+             end
     end
-    value
+    memo
   end
+end
+
+def multiply_els(array)
+  total = array.my_inject { |product, x| product * x }
+  p total
 end
 
 # arr.my_each { |x| puts x }
@@ -117,16 +124,20 @@ end
 # p(arr.my_map { |x| x * 2 })
 # p(arr.map { |x| x * 2 })
 
-sum1 = arr.my_inject { |sum, n| sum + n }
-p sum1
-sum2 = arr.inject { |sum, n| sum + n }
-p sum2
+# arr2 = [2, 4, 5]
 
-longest = word_list.my_inject do |memo, word|
-  memo.length > word.length ? memo : word
-end
-p longest
-longest1 = word_list.inject do |memo, word|
-  memo.length > word.length ? memo : word
-end
-p longest1
+# p(arr2.my_inject { |sum, n| sum * n })
+
+# sum2 = arr.inject { |sum, n| sum + n }
+# p sum2
+
+# longest = word_list.my_inject do |memo, word|
+#   memo.length > word.length ? memo : word
+# end
+# p longest
+# longest1 = word_list.inject do |memo, word|
+#   memo.length > word.length ? memo : word
+# end
+# p longest1
+
+multiply_els([2, 4, 5])
