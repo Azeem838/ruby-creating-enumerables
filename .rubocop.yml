@@ -20,8 +20,6 @@ Metrics/BlockLength:
 
 Style/Documentation:
   Enabled: false
-Style/ExponentialNotation:
-  Enabled: true
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/EachForSimpleLoop:
