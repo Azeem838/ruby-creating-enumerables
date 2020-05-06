@@ -122,3 +122,8 @@ module Enumerable
     memo
   end
 end
+
+def multiply_els(array)
+  total = array.my_inject { |product, x| product * x }
+  p total
+end
