@@ -1,56 +1,74 @@
 module Enumerable
   def my_each()
+    return to_enum(:my_each) unless block_given?
+
     i = -1
-    length.times do
+    arr = to_a
+    arr.length.times do
       i += 1
-      yield self[i]
+      yield(arr[i])
     end
+    self
   end
 
   def my_each_with_index()
+    return to_enum(:my_each_with_index) unless block_given?
+
     i = -1
-    length.times do
+    arr = to_a
+    arr.length.times do
       i += 1
-      yield self[i], i
+      yield(arr[i], i)
     end
+    self
   end
 
-  def my_select(&block)
+  def my_select()
+    return to_enum(:my_select) unless block_given?
+
     new_array = []
     my_each do |item|
-      new_array << item if block.call(item) == true
+      new_array << item if yield(item) == true
     end
-    new_array
+    new_array.empty? ? self : new_array
   end
 
-  def my_all?(&block)
-    new_array = []
+  def my_all?(pattern = nil)
     my_each do |item|
-      new_array << (block.call(item) == true ? 1 : 0)
+      if block_given?
+        return false unless yield(item)
+      elsif pattern.nil?
+        return false unless item
+      else
+        return false unless pattern === item
+      end
     end
-    count = 0
-    new_array.my_each do |x|
-      count += x
-    end
-    count == new_array.length
+    true
   end
 
-  def my_any?(&block)
-    new_array = []
+  def my_any?(pattern = nil)
     my_each do |item|
-      new_array << (block.call(item) == true ? 1 : 0)
+      if block_given?
+        return true unless yield(item) == false
+      elsif pattern.nil?
+        return true unless item
+      else
+        return true unless (pattern === item) == false
+      end
     end
-    count = 0
-    new_array.my_each do |x|
-      count += x
-    end
-    count != 0
+    false
   end
 
-  def my_none?(&block)
+  def my_none?(pattern = nil)
     new_array = []
     my_each do |item|
-      new_array << (block.call(item) == true ? 1 : 0)
+      new_array << if block_given?
+                     (yield(item) == true ? 1 : 0)
+                   elsif pattern.nil?
+                     (item == true ? 1 : 0)
+                   else
+                     ((pattern === item) == true ? 1 : 0)
+                   end
     end
     count = 0
     new_array.my_each do |x|
@@ -71,27 +89,36 @@ module Enumerable
     result != 0 ? result : my_each { |x| x }
   end
 
-  def my_map(&block)
+  def my_map(val = nil)
+    return to_enum(:my_map) unless block_given?
+
     new_array = []
     my_each do |item|
-      new_array << block.call(item)
+      new_array << if val
+                     val.call(item)
+                   else
+                     yield(item)
+                   end
     end
     new_array
   end
 
-  def my_inject(memo = nil)
-    my_each do |item|
-      memo = if memo.nil?
-               item
-             else
-               yield(memo, item)
-             end
+  def my_inject(memo = nil, sym = nil)
+    total = 0
+    if block_given?
+      my_each do |item|
+        memo = memo.nil? ? item : yield(memo, item)
+      end
+    elsif sym and memo
+      my_each do |item|
+        memo = memo.nil? ? item : memo.send(sym, item)
+      end
+    else
+      my_each do |item|
+        total = total.send(memo, item)
+      end
+      return total
     end
     memo
   end
-end
-
-def multiply_els(array)
-  total = array.my_inject { |product, x| product * x }
-  p total
 end
