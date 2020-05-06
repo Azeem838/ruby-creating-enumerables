@@ -32,6 +32,8 @@ Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+Style/CaseQuality:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
