@@ -88,9 +88,7 @@ module Enumerable
     end
     result != 0 ? result : my_each { |x| x }
   end
-end
 
-module Enumerable
   def my_map(val = nil)
     return to_enum(:my_map) unless block_given?
 
