@@ -35,6 +35,8 @@ Style/DefWithParentheses:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 Layout/HashAlignment:
   EnforcedColonStyle: key
 Layout/ExtraSpacing:
@@ -51,4 +53,8 @@ Style/HashEachMethods:
 Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: false
+Style/CaseEquality:
   Enabled: false
