@@ -46,12 +46,12 @@ module Enumerable
     true
   end
 
-  def my_any?(pattern = nil)
+  def my_any?(pattern = nil, &block)
     my_each do |item|
       if block_given?
-        return true unless yield(item) == false
+        return true unless block.call(item) == false
       elsif pattern.nil?
-        return true unless item
+        return true unless item == false || item.nil?
       else
         return true unless (pattern === item) == false
       end
@@ -59,22 +59,8 @@ module Enumerable
     false
   end
 
-  def my_none?(pattern = nil)
-    new_array = []
-    my_each do |item|
-      new_array << if block_given?
-                     (yield(item) == true ? 1 : 0)
-                   elsif pattern.nil?
-                     (item == true ? 1 : 0)
-                   else
-                     ((pattern === item) == true ? 1 : 0)
-                   end
-    end
-    count = 0
-    new_array.my_each do |x|
-      count += x
-    end
-    count.zero?
+  def my_none?(pattern = nil, &block)
+    !my_any?(pattern, &block)
   end
 
   def my_count(num = 0, &block)
@@ -83,6 +69,8 @@ module Enumerable
       if block_given? == false and item == num
         result += 1
       elsif block_given? and block.call(item) == true
+        result += 1
+      elsif num == 0 and block_given? == false
         result += 1
       end
     end
