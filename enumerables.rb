@@ -70,7 +70,7 @@ module Enumerable
         result += 1
       elsif block_given? and block.call(item) == true
         result += 1
-      elsif num == 0 and block_given? == false
+      elsif num.zero? and block_given? == false
         result += 1
       end
     end
