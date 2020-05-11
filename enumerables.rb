@@ -63,14 +63,14 @@ module Enumerable
     !my_any?(pattern, &block)
   end
 
-  def my_count(num = 0, &block)
+  def my_count(num = nil, &block)
     result = 0
     my_each do |item|
       if block_given? == false and item == num
         result += 1
       elsif block_given? and block.call(item) == true
         result += 1
-      elsif num.zero? and block_given? == false
+      elsif num.nil? and block_given? == false
         result += 1
       end
     end
