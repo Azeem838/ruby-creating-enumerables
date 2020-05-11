@@ -1,73 +1,37 @@
-# Project Name
+# Enumerable Methods
 
-> One paragraph statement about the project.
+> This project contains various methods that will be available in the Enumerable module.
 
-![screenshot](./app_screenshot.png)
+The project contains the following methods:
 
-Additional description about the project and its features.
+1. #my_each
+2. #my_each_with_index
+3. #my_select
+4. #my_all?
+5. #my_any?
+6. #my_none?
+7. #my_count
+8. #my_map - accepts procs and blocks
+9. #my_inject
+10. #multiply_els
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- Ruby
 
-## Live Demo
+👤 **Azeem Ahmed**
 
-[Live Demo Link](https://livedemo.com)
-
-
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
-
-## Authors
-
-👤 **Author1**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
-
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@Azeem838](https://github.com/Azeem838)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/Azeem838/ruby-creating-enumerables/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
