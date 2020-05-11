@@ -1,5 +1,5 @@
 module Enumerable
-  def my_each()
+  def my_each
     return to_enum(:my_each) unless block_given?
 
     i = -1
@@ -11,7 +11,7 @@ module Enumerable
     self
   end
 
-  def my_each_with_index()
+  def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
     i = -1
@@ -23,14 +23,14 @@ module Enumerable
     self
   end
 
-  def my_select()
+  def my_select
     return to_enum(:my_select) unless block_given?
 
     new_array = []
     my_each do |item|
       new_array << item if yield(item) == true
     end
-    new_array.empty? ? self : new_array
+    new_array
   end
 
   def my_all?(pattern = nil)
@@ -74,7 +74,7 @@ module Enumerable
         result += 1
       end
     end
-    result != 0 ? result : my_each { |x| x }
+    result
   end
 
   def my_map(val = nil)
