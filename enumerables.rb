@@ -116,5 +116,5 @@ def multiply_els(array)
   p total
 end
 
-p [1, 2, 3].my_each_with_index
-p [1, 2, 3].each_with_index
+p [0, 1, 2].my_count(0)
+p [].count

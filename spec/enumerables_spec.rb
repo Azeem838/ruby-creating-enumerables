@@ -46,7 +46,7 @@ describe Enumerable do
     end
   end
 
-  describe '#y_all?' do
+  describe '#my_all?' do
     let(:array_n) { [1, 2i, 3.14] }
     let(:array_s) { %w[ant bear cat] }
     let(:array_nil) { [nil, true, 99] }
@@ -133,6 +133,38 @@ describe Enumerable do
 
     it 'checks if condition is not met for all item in array for strings given empty array' do
       expect([].my_none?).to eq([].none?)
+    end
+  end
+
+  describe '#my_count' do
+    let(:array) { [0, 0, 1, 2, 4, 2] }
+
+    it 'counts number of elements based on condition' do
+      expect(array.my_count).to eq(array.count)
+    end
+
+    it 'counts number of elements based on condition' do
+      expect(array.my_count(0)).to eq(array.count(0))
+    end
+
+    it 'counts number of elements based on condition' do
+      expect(array.my_count(&:even?)).to eq(array.count(&:even?))
+    end
+  end
+
+  describe 'my_map' do
+    let(:range) { (1..10) }
+
+    it 'returns new array using and executes the condition onto item in array' do
+      expect(range.my_map(&:to_s)).to eq(range.map(&:to_s))
+    end
+
+    it 'returns new array using and executes the condition onto item in array' do
+      expect(range.my_map { |i| i * i }).to eq(range.map { |i| i * i })
+    end
+
+    it 'returns new array using and executes the condition onto item in array' do
+      expect(range.my_map { 'cat' }).to eq(range.map { 'cat' })
     end
   end
 end
