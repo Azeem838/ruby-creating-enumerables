@@ -7,7 +7,7 @@ AllCops:
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 200
 Metrics/MethodLength:
   Max: 20
 Metrics/AbcSize:
@@ -22,6 +22,8 @@ Metrics/ModuleLength:
 Metrics/CyclomaticComplexity:
   Enabled: false
 Metrics/PerceivedComplexity:
+  Enabled: false
+Lint/Void:
   Enabled: false
 
 Style/CaseEquality:
