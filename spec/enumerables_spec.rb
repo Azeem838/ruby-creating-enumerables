@@ -24,7 +24,7 @@ describe Enumerable do
     end
 
     it 'Iterates through the array and executes block' do
-      expect(my_each_with_index_test).to eq(array.each_with_index { |x| x * 2 })
+      expect(my_each_with_index_test).to eq(array.each_with_index { |x, i| "#{i}: #{x * 2}" } )
     end
   end
 
