@@ -45,4 +45,30 @@ describe Enumerable do
       expect(array_s.my_select { |s| s == :hello }).to eq(array_s.select { |s| s == :hello })
     end
   end
+
+  describe 'my_all?' do
+    let(:array_n) { [1, 2i, 3.14] }
+    let(:array_s) { %w[ant bear cat] }
+    let(:array_nil) { [nil, true, 99] }
+
+    it 'checks if block is met for all items in array for strings given block' do
+      expect(array_s.my_all? { |word| word.length >= 4 }).to eq(array_s.all? { |word| word.length >= 4 })
+    end
+
+    it 'checks if condition is met for all items in array for strings given symbol' do
+      expect(array_s.my_all?(/t/)).to eq(array_s.all?(/t/))
+    end
+
+    it 'checks if condition is met for all items in array for strings given numeric' do
+      expect(array_n.my_all?(Numeric)).to eq(array_n.all?(Numeric))
+    end
+
+    it 'checks if condition is met for all items in array for strings given nil array' do
+      expect(array_nil.my_all?).to eq(array_nil.all?)
+    end
+
+    it 'checks if condition is met for all items in array for strings given empty array' do
+      expect([].my_all?).to eq([].all?)
+    end
+  end
 end
