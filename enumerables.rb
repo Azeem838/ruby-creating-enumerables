@@ -115,6 +115,3 @@ def multiply_els(array)
   total = array.my_inject { |product, x| product * x }
   p total
 end
-
-p [0, 1, 2].my_count(0)
-p [].count

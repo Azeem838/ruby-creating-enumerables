@@ -152,7 +152,7 @@ describe Enumerable do
     end
   end
 
-  describe 'my_map' do
+  describe '#my_map' do
     let(:range) { (1..10) }
 
     it 'returns new array using and executes the condition onto item in array' do
@@ -165,6 +165,30 @@ describe Enumerable do
 
     it 'returns new array using and executes the condition onto item in array' do
       expect(range.my_map { 'cat' }).to eq(range.map { 'cat' })
+    end
+  end
+
+  describe '#my_inject' do
+    let(:range) { (1..10) }
+
+    it 'executes condition on array and returns the answer using an accumulator' do
+      expect(range.my_inject(:+)).to eq(range.inject(:+))
+    end
+
+    it 'executes block on array and returns answer using an accumulator' do
+      expect(range.my_inject { |sum, x| sum + x }).to eq(range.inject { |sum, x| sum + x })
+    end
+
+    it 'uses starting value for accumulator and executes symbol on array and returns answer' do
+      expect(range.my_inject(1, :*)).to eq(range.inject(1, :*))
+    end
+
+    it 'uses starting value for accumulator and executes block on array and returns answer' do
+      expect(range.my_inject(1) { |sum, x| sum * x }).to eq(range.inject(1) { |sum, x| sum * x })
+    end
+
+    it 'executes block on array and returns answer using an accumulator' do
+      expect(%w[cat sheep bear].my_inject { |memo, word| memo.length > word.length ? memo : word }).to eq(%w[cat sheep bear].inject { |memo, word| memo.length > word.length ? memo : word })
     end
   end
 end
