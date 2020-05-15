@@ -46,7 +46,7 @@ describe Enumerable do
     end
   end
 
-  describe 'my_all?' do
+  describe '#y_all?' do
     let(:array_n) { [1, 2i, 3.14] }
     let(:array_s) { %w[ant bear cat] }
     let(:array_nil) { [nil, true, 99] }
@@ -69,6 +69,70 @@ describe Enumerable do
 
     it 'checks if condition is met for all items in array for strings given empty array' do
       expect([].my_all?).to eq([].all?)
+    end
+  end
+
+  describe '#my_any?' do
+    let(:array_n) { [1, 2i, 3.14] }
+    let(:array_s) { %w[ant bear cat] }
+    let(:array_nil) { [nil, true, 99] }
+
+    it 'checks if block is met for atleast 1 item in array for strings given block' do
+      expect(array_s.my_any? { |word| word.length >= 4 }).to eq(array_s.any? { |word| word.length >= 4 })
+    end
+
+    it 'checks if condition is met for atleast 1 item in array for strings given symbol' do
+      expect(array_s.my_any?(/t/)).to eq(array_s.any?(/t/))
+    end
+
+    it 'checks if condition is met for atleast 1 item in array for strings given numeric' do
+      expect(array_n.my_any?(Numeric)).to eq(array_n.any?(Numeric))
+    end
+
+    it 'checks if condition is met for atleast 1 item in array for strings given nil array' do
+      expect(array_nil.my_any?).to eq(array_nil.any?)
+    end
+
+    it 'checks if condition is met for atleast 1 item in array for strings given empty array' do
+      expect([].my_any?).to eq([].any?)
+    end
+  end
+
+  describe '#my_none?' do
+    let(:array_n) { [1, 2i, 3.14] }
+    let(:array_s) { %w[ant bear cat] }
+    let(:array_nil) { [nil, true, false] }
+
+    it 'checks if condition is not met for all items in array for strings given empty array' do
+      expect(array_s.my_none? { |word| word.length == 5 }).to eq(array_s.none? { |word| word.length == 5 })
+    end
+
+    it 'checks if condition is not met for all items in array for strings given empty array' do
+      expect(array_s.my_none? { |word| word.length >= 4 }).to eq(array_s.none? { |word| word.length >= 4 })
+    end
+
+    it 'checks if condition is not met for all item in array for strings given symbol' do
+      expect(array_s.my_none?(/d/)).to eq(array_s.none?(/d/))
+    end
+
+    it 'checks if condition is not met for all item in array for strings given numeric' do
+      expect(array_n.my_none?(Float)).to eq(array_n.none?(Float))
+    end
+
+    it 'checks if condition is not met for all item in array for strings given nil array' do
+      expect(array_nil.my_none?).to eq(array_nil.none?)
+    end
+
+    it 'checks if condition is not met for all item in array for strings given nil array' do
+      expect([nil].my_none?).to eq([nil].none?)
+    end
+
+    it 'checks if condition is not met for all item in array for strings given nil array' do
+      expect([nil, false].my_none?).to eq([nil, false].none?)
+    end
+
+    it 'checks if condition is not met for all item in array for strings given empty array' do
+      expect([].my_none?).to eq([].none?)
     end
   end
 end
