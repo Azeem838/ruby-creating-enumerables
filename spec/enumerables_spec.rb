@@ -1,4 +1,4 @@
-require './enumerables.rb'
+require_relative '../enumerables.rb'
 describe Enumerable do
   let(:my_each_test) { array.my_each { |x| x * 2 } }
   let(:my_each_with_index_test) { array.my_each_with_index { |x, i| "#{i}: #{x * 2}" } }
