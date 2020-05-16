@@ -1,6 +1,6 @@
-# Enumerable Methods
+# Enumerable Methods and Tested with RSpec
 
-> This project contains various methods that will be available in the Enumerable module.
+> This project contains various methods that will be available in the Enumerable module and it was tested with RSpec.
 
 The project contains the following methods:
 
@@ -18,10 +18,15 @@ The project contains the following methods:
 ## Built With
 
 - Ruby
+- Tested with RSpec
 
 👤 **Azeem Ahmed**
 
 - Github: [@Azeem838](https://github.com/Azeem838)
+
+👤 **Njgouh Abdoulaye Razak**
+
+- Github: [@AbdoulayeRazak](https://github.com/Abdoulaye-Thespy)
 
 ## 🤝 Contributing
 
